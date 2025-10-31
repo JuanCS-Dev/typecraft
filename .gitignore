@@ -1,0 +1,75 @@
+# Binaries
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+/bin/
+/dist/
+/build/
+
+# Go
+*.test
+*.out
+/vendor/
+go.work
+
+# Test coverage
+*.coverprofile
+coverage.html
+
+# Environment files
+.env
+.env.local
+.env.*.local
+*.local
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.project
+.classpath
+.settings/
+
+# OS files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Logs
+*.log
+logs/
+
+# Temporary files
+tmp/
+temp/
+*.tmp
+
+# Project specific
+/data/manuscripts/
+/data/output/
+/data/temp/
+*.pdf
+*.epub
+*.docx
+*.odt
+
+# Docker volumes
+/docker-data/
+
+# Node modules (if frontend included)
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Build artifacts
+*.tar.gz
+*.zip
