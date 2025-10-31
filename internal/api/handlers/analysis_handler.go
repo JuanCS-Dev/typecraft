@@ -115,6 +115,9 @@ func (h *AnalysisHandler) AnalyzeProject(c *gin.Context) {
 		return
 	}
 	
+	// If force_reanalysis is true, we could invalidate cache here
+	// For now, the service will handle caching automatically
+	
 	// Perform analysis
 	analysis, err := h.analysisService.AnalyzeProject(c.Request.Context(), projectID, manuscriptText)
 	if err != nil {

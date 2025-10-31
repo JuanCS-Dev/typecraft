@@ -6,6 +6,7 @@ import (
 	"context"
 	"fmt"
 	"strings"
+	"time"
 
 	"github.com/JuanCS-Dev/typecraft/internal/ai"
 	"github.com/JuanCS-Dev/typecraft/internal/domain"
@@ -14,15 +15,17 @@ import (
 
 // AnalysisService handles manuscript content analysis
 type AnalysisService struct {
-	analyzer  *ai.Analyzer
-	projectRepo *repository.ProjectRepository
+	analyzer     *ai.Analyzer
+	projectRepo  *repository.ProjectRepository
+	analysisRepo *repository.AnalysisRepository
 }
 
 // NewAnalysisService creates a new analysis service
 func NewAnalysisService(analyzer *ai.Analyzer, projectRepo *repository.ProjectRepository) *AnalysisService {
 	return &AnalysisService{
-		analyzer:  analyzer,
-		projectRepo: projectRepo,
+		analyzer:     analyzer,
+		projectRepo:  projectRepo,
+		analysisRepo: repository.NewAnalysisRepository(),
 	}
 }
 
@@ -33,6 +36,19 @@ func (s *AnalysisService) AnalyzeProject(ctx context.Context, projectID string, 
 	project, err := s.projectRepo.GetByID(projectID)
 	if err != nil {
 		return nil, fmt.Errorf("project not found: %w", err)
+	}
+
+	// Check cache first (24 hours TTL)
+	cacheTTL := 24 * time.Hour
+	cachedAnalysis, err := s.analysisRepo.GetCachedAnalysis(projectID, cacheTTL)
+	if err != nil {
+		// Log error but continue with new analysis
+		fmt.Printf("Warning: cache check failed: %v\n", err)
+	}
+	
+	if cachedAnalysis != nil {
+		// Return cached analysis
+		return cachedAnalysis, nil
 	}
 
 	// Calculate word count
@@ -53,6 +69,12 @@ func (s *AnalysisService) AnalyzeProject(ctx context.Context, projectID string, 
 	// Convert to domain model
 	domainAnalysis := s.convertToDomainAnalysis(analysis)
 	domainAnalysis.ProjectID = projectID
+	
+	// Save analysis to database (cache for future)
+	if err := s.analysisRepo.Save(domainAnalysis); err != nil {
+		// Log error but don't fail - we still have the analysis
+		fmt.Printf("Warning: failed to cache analysis: %v\n", err)
+	}
 	
 	// Update project status
 	project.Status = "analyzing" // Use string instead of constant
