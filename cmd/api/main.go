@@ -82,6 +82,11 @@ func main() {
 
 	// Inicializar handlers
 	projectHandler := handlers.NewProjectHandler()
+	
+	processingHandler, err := handlers.NewProcessingHandler()
+	if err != nil {
+		log.Printf("⚠️  Warning: Processing handler não disponível: %v", err)
+	}
 
 	// API v1 routes
 	v1 := router.Group("/api/v1")
@@ -97,6 +102,16 @@ func main() {
 			projects.POST("/:id/upload", projectHandler.UploadManuscript)
 			projects.POST("/:id/process", projectHandler.ProcessProject)
 			projects.GET("/:id/jobs", projectHandler.GetProjectJobs)
+		}
+		
+		// Processing (conversão e renderização direta)
+		if processingHandler != nil {
+			processing := v1.Group("/processing")
+			{
+				processing.POST("/convert", processingHandler.ConvertFile)
+				processing.POST("/pdf", processingHandler.GeneratePDF)
+				processing.POST("/manuscript", processingHandler.ProcessManuscript)
+			}
 		}
 	}
 
