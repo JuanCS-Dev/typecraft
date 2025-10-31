@@ -228,3 +228,46 @@ func (s *AnalysisService) recommendLayoutParams(analysis *domain.AIAnalysis) dom
 
 	return params
 }
+
+// GetAnalysisHistory retrieves analysis history for a project
+func (s *AnalysisService) GetAnalysisHistory(projectID string, limit int) ([]*domain.AIAnalysis, error) {
+	return s.analysisRepo.ListByProject(projectID, limit)
+}
+
+// ProjectMetrics contains analysis metrics for a project
+type ProjectMetrics struct {
+	TotalAnalyses   int64   `json:"total_analyses"`
+	TotalTokens     int     `json:"total_tokens"`
+	EstimatedCost   float64 `json:"estimated_cost"`
+	LastAnalyzedAt  string  `json:"last_analyzed_at,omitempty"`
+}
+
+// GetProjectMetrics retrieves analysis metrics for a project
+func (s *AnalysisService) GetProjectMetrics(projectID string) (*ProjectMetrics, error) {
+	count, err := s.analysisRepo.CountByProject(projectID)
+	if err != nil {
+		return nil, fmt.Errorf("failed to count analyses: %w", err)
+	}
+	
+	totalTokens, err := s.analysisRepo.GetTotalTokensUsed(projectID)
+	if err != nil {
+		return nil, fmt.Errorf("failed to get total tokens: %w", err)
+	}
+	
+	// GPT-4o pricing: ~$0.00002 per token (approximate)
+	estimatedCost := float64(totalTokens) * 0.00002
+	
+	metrics := &ProjectMetrics{
+		TotalAnalyses: count,
+		TotalTokens:   totalTokens,
+		EstimatedCost: estimatedCost,
+	}
+	
+	// Get last analysis for timestamp
+	lastAnalysis, err := s.analysisRepo.GetByProjectID(projectID)
+	if err == nil && lastAnalysis != nil {
+		metrics.LastAnalyzedAt = lastAnalysis.AnalyzedAt.Format("2006-01-02 15:04:05")
+	}
+	
+	return metrics, nil
+}

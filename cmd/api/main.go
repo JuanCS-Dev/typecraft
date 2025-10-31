@@ -123,6 +123,8 @@ func main() {
 		// Analysis (AI-powered content analysis)
 		if analysisHandler != nil {
 			v1.POST("/projects/:id/analyze", analysisHandler.AnalyzeProject)
+			v1.GET("/projects/:id/analyses", analysisHandler.GetAnalysisHistory)
+			v1.GET("/projects/:id/metrics", analysisHandler.GetProjectMetrics)
 			v1.GET("/genres", analysisHandler.ListGenres)
 		}
 	}

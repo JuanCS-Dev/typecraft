@@ -229,3 +229,43 @@ func (h *AnalysisHandler) ListGenres(c *gin.Context) {
 		"total":  len(genres),
 	})
 }
+
+// GetAnalysisHistory retrieves analysis history for a project
+// GET /api/v1/projects/:id/analyses
+func (h *AnalysisHandler) GetAnalysisHistory(c *gin.Context) {
+	projectID := c.Param("id")
+	
+	// Get limit from query param (default 10)
+	limit := 10
+	if limitStr := c.Query("limit"); limitStr != "" {
+		fmt.Sscanf(limitStr, "%d", &limit)
+	}
+	
+	// Get analyses from service
+	analyses, err := h.analysisService.GetAnalysisHistory(projectID, limit)
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{"error": "failed to retrieve history"})
+		return
+	}
+	
+	c.JSON(http.StatusOK, gin.H{
+		"project_id": projectID,
+		"analyses":   analyses,
+		"total":      len(analyses),
+	})
+}
+
+// GetProjectMetrics retrieves analysis metrics for a project
+// GET /api/v1/projects/:id/metrics
+func (h *AnalysisHandler) GetProjectMetrics(c *gin.Context) {
+	projectID := c.Param("id")
+	
+	// Get metrics from service
+	metrics, err := h.analysisService.GetProjectMetrics(projectID)
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{"error": "failed to retrieve metrics"})
+		return
+	}
+	
+	c.JSON(http.StatusOK, metrics)
+}
