@@ -54,7 +54,6 @@ func (s *ProjectService) CreateProject(userID string, req CreateProjectRequest) 
 	
 	// Criar projeto
 	project := &domain.Project{
-		ID:                   uuid.New().String(),
 		UserID:               userID,
 		Title:                req.Title,
 		Author:               req.Author,

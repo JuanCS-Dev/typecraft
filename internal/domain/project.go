@@ -4,6 +4,26 @@ import (
 	"time"
 )
 
+// Analysis represents simplified content analysis results
+type Analysis struct {
+	Genre      string
+	Tone       string
+	Complexity float64
+	HasMath    bool
+	ImageCount int
+	TableCount int
+	CodeBlocks int
+}
+
+// Document represents analyzed document structure
+type Document struct {
+	Complexity float64
+	HasMath    bool
+	ImageCount int
+	TableCount int
+	CodeBlocks int
+}
+
 // ProjectStatus representa o estado atual do processamento
 type ProjectStatus string
 
@@ -20,13 +40,14 @@ const (
 
 // Project representa um projeto de livro
 type Project struct {
-	ID          string        `json:"id" gorm:"primaryKey"`
+	ID          uint          `json:"id" gorm:"primaryKey;autoIncrement"`
 	UserID      string        `json:"user_id" gorm:"index;not null"`
 	
 	// Metadados do livro
 	Title       string        `json:"title" gorm:"not null"`
 	Author      string        `json:"author" gorm:"not null"`
 	Genre       string        `json:"genre"`
+	Language    string        `json:"language" gorm:"default:'pt'"`
 	ISBN        string        `json:"isbn"`
 	Description string        `json:"description"`
 	
