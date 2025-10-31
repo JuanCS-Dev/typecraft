@@ -69,6 +69,30 @@ func (d *Document) SetMetadata(metadata DocumentMetadata) *Document {
 	return d
 }
 
+// SetTitle define o título
+func (d *Document) SetTitle(title string) *Document {
+	d.Metadata.Title = title
+	return d
+}
+
+// SetAuthor define o autor
+func (d *Document) SetAuthor(author string) *Document {
+	d.Metadata.Author = author
+	return d
+}
+
+// SetDate define a data
+func (d *Document) SetDate(date string) *Document {
+	d.Metadata.Date = date
+	return d
+}
+
+// SetSubject define o assunto
+func (d *Document) SetSubject(subject string) *Document {
+	d.Metadata.Subject = subject
+	return d
+}
+
 // AddContent adiciona conteúdo
 func (d *Document) AddContent(content string) *Document {
 	d.Content = append(d.Content, content)
