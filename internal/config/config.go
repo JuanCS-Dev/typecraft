@@ -24,6 +24,16 @@ type Config struct {
 	// AI APIs
 	OpenAIKey    string
 	AnthropicKey string
+	GeminiKey    string
+	
+	// OpenAI Configuration
+	OpenAIModel       string
+	OpenAIMaxTokens   int
+	OpenAITemperature float64
+	
+	// Analysis Configuration
+	AnalysisCacheTTL  int
+	AnalysisSampleSize int
 	
 	// Server
 	APIPort          int
@@ -50,6 +60,12 @@ func Load() (*Config, error) {
 		S3Region:          getEnv("S3_REGION", "us-east-1"),
 		OpenAIKey:         getEnv("OPENAI_API_KEY", ""),
 		AnthropicKey:      getEnv("ANTHROPIC_API_KEY", ""),
+		GeminiKey:         getEnv("GEMINI_API_KEY", ""),
+		OpenAIModel:       getEnv("OPENAI_MODEL", "gpt-4o"),
+		OpenAIMaxTokens:   getEnvInt("OPENAI_MAX_TOKENS", 2000),
+		OpenAITemperature: getEnvFloat("OPENAI_TEMPERATURE", 0.3),
+		AnalysisCacheTTL:  getEnvInt("ANALYSIS_CACHE_TTL", 86400),
+		AnalysisSampleSize: getEnvInt("ANALYSIS_SAMPLE_SIZE", 5000),
 		APIPort:           getEnvInt("API_PORT", 8000),
 		WorkerConcurrency: getEnvInt("WORKER_CONCURRENCY", 5),
 		JWTSecret:         getEnv("JWT_SECRET", "change-me-in-production"),
@@ -85,6 +101,16 @@ func getEnvInt(key string, defaultValue int) int {
 	if value := os.Getenv(key); value != "" {
 		if intValue, err := strconv.Atoi(value); err == nil {
 			return intValue
+		}
+	}
+	return defaultValue
+}
+
+// getEnvFloat retorna o valor float da variável de ambiente ou o padrão
+func getEnvFloat(key string, defaultValue float64) float64 {
+	if value := os.Getenv(key); value != "" {
+		if floatValue, err := strconv.ParseFloat(value, 64); err == nil {
+			return floatValue
 		}
 	}
 	return defaultValue

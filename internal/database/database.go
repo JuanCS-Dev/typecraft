@@ -42,6 +42,7 @@ func Migrate() error {
 	err := DB.AutoMigrate(
 		&domain.Project{},
 		&domain.Job{},
+		&domain.AIAnalysis{},
 	)
 	
 	if err != nil {
