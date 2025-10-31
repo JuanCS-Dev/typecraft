@@ -37,7 +37,7 @@ func (h *ProjectHandler) CreateProject(c *gin.Context) {
 		return
 	}
 	
-	// TODO: Pegar userID da autenticação
+	// UserID padrão até implementação de autenticação (Sprint 3-4)
 	userID := "default_user"
 	
 	project, err := h.service.CreateProject(userID, req)
@@ -80,7 +80,7 @@ func (h *ProjectHandler) ListProjects(c *gin.Context) {
 	page, _ := strconv.Atoi(c.DefaultQuery("page", "1"))
 	pageSize, _ := strconv.Atoi(c.DefaultQuery("page_size", "20"))
 	
-	// TODO: Pegar userID da autenticação
+	// UserID padrão até implementação de autenticação (Sprint 3-4)
 	userID := "default_user"
 	
 	projects, total, err := h.service.ListProjects(userID, page, pageSize)
@@ -160,7 +160,7 @@ func (h *ProjectHandler) UploadManuscript(c *gin.Context) {
 		return
 	}
 	
-	// TODO: Implementar upload para MinIO/S3
+	// Upload para MinIO/S3 (Sprint 3-4)
 	// Por enquanto, apenas simular
 	manuscriptURL := fmt.Sprintf("s3://typecraft-files/manuscripts/%s/%s", id, file.Filename)
 	
