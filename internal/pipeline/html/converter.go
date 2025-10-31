@@ -3,6 +3,7 @@ package html
 import (
 	"bytes"
 	"fmt"
+	"os"
 	"os/exec"
 )
 
@@ -130,4 +131,86 @@ func (pc *PandocConverter) GetVersion() (string, error) {
 		return "", err
 	}
 	return string(output), nil
+}
+
+// Converter is a simplified interface for E2E tests
+type Converter struct {
+	pandoc   *PandocConverter
+	cssVars  map[string]string
+}
+
+// Metadata represents document metadata
+type Metadata struct {
+	Title    string
+	Author   string
+	Language string
+	Subject  string
+	Keywords string
+}
+
+// NewConverter creates a new Converter instance
+func NewConverter() *Converter {
+	pandoc, _ := NewPandocConverter()
+	return &Converter{
+		pandoc:  pandoc,
+		cssVars: make(map[string]string),
+	}
+}
+
+// SetCSSVariables sets CSS variables for the conversion
+func (c *Converter) SetCSSVariables(vars map[string]string) {
+	c.cssVars = vars
+}
+
+// ConvertFile converts a Markdown file to HTML with metadata
+func (c *Converter) ConvertFile(inputPath, outputPath string, metadata Metadata) error {
+	// Read input file
+	content, err := os.ReadFile(inputPath)
+	if err != nil {
+		return fmt.Errorf("failed to read input file: %w", err)
+	}
+
+	// Prepare options
+	opts := DefaultHTMLOptions()
+	opts.Metadata["title"] = metadata.Title
+	opts.Metadata["author"] = metadata.Author
+	opts.Metadata["lang"] = metadata.Language
+	opts.Metadata["subject"] = metadata.Subject
+	opts.Metadata["keywords"] = metadata.Keywords
+
+	// Convert
+	html, err := c.pandoc.Convert(string(content), opts)
+	if err != nil {
+		return fmt.Errorf("conversion failed: %w", err)
+	}
+
+	// Inject CSS variables if set
+	if len(c.cssVars) > 0 {
+		html = c.injectCSSVariables(html)
+	}
+
+	// Write output file
+	if err := os.WriteFile(outputPath, []byte(html), 0644); err != nil {
+		return fmt.Errorf("failed to write output file: %w", err)
+	}
+
+	return nil
+}
+
+// injectCSSVariables injects custom CSS variables into the HTML
+func (c *Converter) injectCSSVariables(html string) string {
+	// Build CSS variables block
+	cssBlock := "<style>\n:root {\n"
+	for key, value := range c.cssVars {
+		cssBlock += fmt.Sprintf("  %s: %s;\n", key, value)
+	}
+	cssBlock += "}\n</style>\n"
+
+	// Insert before closing </head> tag
+	headEnd := "</head>"
+	if idx := bytes.Index([]byte(html), []byte(headEnd)); idx != -1 {
+		html = html[:idx] + cssBlock + html[idx:]
+	}
+	
+	return html
 }

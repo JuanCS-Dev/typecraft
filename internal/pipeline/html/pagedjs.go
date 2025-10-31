@@ -95,3 +95,13 @@ func (r *PagedJSRenderer) RenderWithConfigToPDF(ctx context.Context, cfg RenderC
 
 	return r.RenderToPDF(ctx, opts)
 }
+
+// RenderPDF is a simplified wrapper for E2E tests
+func (r *PagedJSRenderer) RenderPDF(htmlPath, pdfPath string) error {
+	opts := RenderOptions{
+		HTMLPath:   htmlPath,
+		OutputPath: pdfPath,
+		Timeout:    r.timeout,
+	}
+	return r.RenderToPDF(context.Background(), opts)
+}
