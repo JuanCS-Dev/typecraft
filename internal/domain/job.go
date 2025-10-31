@@ -9,8 +9,8 @@ type Job struct {
 	Type        JobType   `json:"type" gorm:"not null"`
 	Status      JobStatus `json:"status" gorm:"default:'pending';index"`
 	Priority    int       `json:"priority" gorm:"default:5"` // 1-10, maior = mais prioritário
-	Payload     map[string]interface{} `json:"payload" gorm:"type:jsonb"`
-	Result      map[string]interface{} `json:"result,omitempty" gorm:"type:jsonb"`
+	Payload     *map[string]interface{} `json:"payload,omitempty" gorm:"type:jsonb"`
+	Result      *map[string]interface{} `json:"result,omitempty" gorm:"type:jsonb"`
 	ErrorMsg    string    `json:"error_msg,omitempty"`
 	Attempts    int       `json:"attempts" gorm:"default:0"`
 	MaxAttempts int       `json:"max_attempts" gorm:"default:3"`
@@ -70,7 +70,7 @@ func (j *Job) MarkStarted() {
 // MarkCompleted marca o job como concluído com sucesso
 func (j *Job) MarkCompleted(result map[string]interface{}) {
 	j.Status = JobStatusCompleted
-	j.Result = result
+	j.Result = &result
 	now := time.Now()
 	j.CompletedAt = &now
 }

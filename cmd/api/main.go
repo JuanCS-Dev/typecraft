@@ -7,6 +7,7 @@ import (
 	"os/signal"
 	"syscall"
 
+	"github.com/JuanCS-Dev/typecraft/internal/api/handlers"
 	"github.com/JuanCS-Dev/typecraft/internal/config"
 	"github.com/JuanCS-Dev/typecraft/internal/database"
 	"github.com/gin-gonic/gin"
@@ -79,12 +80,24 @@ func main() {
 		})
 	})
 
-	// API v1 routes (serão implementadas)
+	// Inicializar handlers
+	projectHandler := handlers.NewProjectHandler()
+
+	// API v1 routes
 	v1 := router.Group("/api/v1")
 	{
-		v1.GET("/projects", func(c *gin.Context) {
-			c.JSON(200, gin.H{"message": "Listagem de projetos - Em breve"})
-		})
+		// Projects
+		projects := v1.Group("/projects")
+		{
+			projects.POST("", projectHandler.CreateProject)
+			projects.GET("", projectHandler.ListProjects)
+			projects.GET("/:id", projectHandler.GetProject)
+			projects.PATCH("/:id", projectHandler.UpdateProject)
+			projects.DELETE("/:id", projectHandler.DeleteProject)
+			projects.POST("/:id/upload", projectHandler.UploadManuscript)
+			projects.POST("/:id/process", projectHandler.ProcessProject)
+			projects.GET("/:id/jobs", projectHandler.GetProjectJobs)
+		}
 	}
 
 	// Iniciar servidor

@@ -31,18 +31,18 @@ type Project struct {
 	Description string        `json:"description"`
 	
 	// Configurações
-	PageFormat           string   `json:"page_format" gorm:"default:'6x9'"`
-	DistributionChannels []string `json:"distribution_channels" gorm:"type:jsonb"`
+	PageFormat           string    `json:"page_format" gorm:"default:'6x9'"`
+	DistributionChannels *[]string `json:"distribution_channels,omitempty" gorm:"type:jsonb"`
 	
 	// Status do processamento
 	Status   ProjectStatus `json:"status" gorm:"default:'created';index"`
 	Progress int           `json:"progress" gorm:"default:0"` // 0-100
 	
 	// Análise de conteúdo (JSON gerado pela IA)
-	Analysis map[string]interface{} `json:"analysis,omitempty" gorm:"type:jsonb"`
+	Analysis *map[string]interface{} `json:"analysis,omitempty" gorm:"type:jsonb"`
 	
 	// Design gerado (JSON com fontes, cores, layout)
-	DesignConfig map[string]interface{} `json:"design_config,omitempty" gorm:"type:jsonb"`
+	DesignConfig *map[string]interface{} `json:"design_config,omitempty" gorm:"type:jsonb"`
 	
 	// URLs dos arquivos (MinIO/S3)
 	ManuscriptURL      string `json:"manuscript_url,omitempty"`
@@ -57,7 +57,7 @@ type Project struct {
 	CompletedAt *time.Time `json:"completed_at,omitempty"`
 	
 	// Logs de erro (JSON array)
-	ErrorLog []string `json:"error_log,omitempty" gorm:"type:jsonb"`
+	ErrorLog *[]string `json:"error_log,omitempty" gorm:"type:jsonb"`
 }
 
 // TableName especifica o nome da tabela no banco
@@ -83,9 +83,9 @@ func (p *Project) CanBeProcessed() bool {
 // AddError adiciona um erro ao log
 func (p *Project) AddError(err string) {
 	if p.ErrorLog == nil {
-		p.ErrorLog = []string{}
+		p.ErrorLog = &[]string{}
 	}
-	p.ErrorLog = append(p.ErrorLog, err)
+	*p.ErrorLog = append(*p.ErrorLog, err)
 }
 
 // SetStatus atualiza o status e o timestamp apropriado
