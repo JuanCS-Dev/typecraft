@@ -1,0 +1,126 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{book}
+\usepackage{amsmath,amssymb}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\usepackage[margin=1in]{geometry}
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  pdftitle={Livro de Teste - Typecraft},
+  pdfauthor={Juan (Arquiteto-Chefe)},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\title{Livro de Teste - Typecraft}
+\author{Juan (Arquiteto-Chefe)}
+\date{31 de Outubro de 2025}
+
+\begin{document}
+\frontmatter
+\maketitle
+
+\mainmatter
+\hypertarget{capuxedtulo-1-o-inuxedcio}{%
+\chapter{Capítulo 1: O Início}\label{capuxedtulo-1-o-inuxedcio}}
+
+Este é um \textbf{teste} do sistema Typecraft. O objetivo é validar o
+pipeline completo:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Conversão de Markdown → LaTeX
+\item
+  Renderização LaTeX → PDF
+\item
+  Aplicação de princípios tipográficos
+\end{enumerate}
+
+\hypertarget{seuxe7uxe3o-1.1-tipografia-cluxe1ssica}{%
+\section{Seção 1.1: Tipografia
+Clássica}\label{seuxe7uxe3o-1.1-tipografia-cluxe1ssica}}
+
+A tipografia existe para \emph{honrar o conteúdo}, como ensinou Robert
+Bringhurst.
+
+\hypertarget{subsection-teste-de-hierarquia}{%
+\subsection{Subsection: Teste de
+Hierarquia}\label{subsection-teste-de-hierarquia}}
+
+Este é um parágrafo de teste com texto suficiente para validar:
+
+\begin{itemize}
+\tightlist
+\item
+  Quebra de linha
+\item
+  Espaçamento entre palavras
+\item
+  Entrelinha (leading)
+\item
+  Margens harmoniosas
+\end{itemize}
+
+\hypertarget{capuxedtulo-2-teste-de-estrutura}{%
+\chapter{Capítulo 2: Teste de
+Estrutura}\label{capuxedtulo-2-teste-de-estrutura}}
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod
+tempor incididunt ut labore et dolore magna aliqua.
+
+\hypertarget{seuxe7uxe3o-2.1-mais-conteuxfado}{%
+\section{Seção 2.1: Mais
+Conteúdo}\label{seuxe7uxe3o-2.1-mais-conteuxfado}}
+
+Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi
+ut aliquip ex ea commodo consequat.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\textbf{Fim do documento de teste.}
+
+\backmatter
+\end{document}
