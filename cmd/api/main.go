@@ -87,6 +87,12 @@ func main() {
 	if err != nil {
 		log.Printf("⚠️  Warning: Processing handler não disponível: %v", err)
 	}
+	
+	// Analysis handler (requires AI setup)
+	analysisHandler, err := handlers.NewAnalysisHandlerWithDeps()
+	if err != nil {
+		log.Printf("⚠️  Warning: Analysis handler não disponível: %v", err)
+	}
 
 	// API v1 routes
 	v1 := router.Group("/api/v1")
@@ -112,6 +118,12 @@ func main() {
 				processing.POST("/pdf", processingHandler.GeneratePDF)
 				processing.POST("/manuscript", processingHandler.ProcessManuscript)
 			}
+		}
+		
+		// Analysis (AI-powered content analysis)
+		if analysisHandler != nil {
+			v1.POST("/projects/:id/analyze", analysisHandler.AnalyzeProject)
+			v1.GET("/genres", analysisHandler.ListGenres)
 		}
 	}
 

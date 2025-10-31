@@ -15,11 +15,11 @@ import (
 // AnalysisService handles manuscript content analysis
 type AnalysisService struct {
 	analyzer  *ai.Analyzer
-	projectRepo repository.ProjectRepository
+	projectRepo *repository.ProjectRepository
 }
 
 // NewAnalysisService creates a new analysis service
-func NewAnalysisService(analyzer *ai.Analyzer, projectRepo repository.ProjectRepository) *AnalysisService {
+func NewAnalysisService(analyzer *ai.Analyzer, projectRepo *repository.ProjectRepository) *AnalysisService {
 	return &AnalysisService{
 		analyzer:  analyzer,
 		projectRepo: projectRepo,
