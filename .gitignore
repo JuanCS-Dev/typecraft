@@ -76,3 +76,5 @@ yarn-error.log*
 
 # Documentation (generated)
 docs/
+node_modules/
+package-lock.json

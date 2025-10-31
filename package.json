@@ -1,0 +1,31 @@
+{
+  "name": "typecraft",
+  "version": "1.0.0",
+  "description": "<div align=\"center\">",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs",
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JuanCS-Dev/typecraft.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JuanCS-Dev/typecraft/issues"
+  },
+  "homepage": "https://github.com/JuanCS-Dev/typecraft#readme",
+  "devDependencies": {
+    "pagedjs-cli": "^0.4.3"
+  },
+  "dependencies": {
+    "pagedjs": "^0.4.3",
+    "puppeteer": "^24.27.0"
+  }
+}
