@@ -1,0 +1,535 @@
+{
+  "version": "1.0",
+  "last_updated": "2024-10-31",
+  "curated_fonts": {
+    "serif_body": [
+      "Crimson Text",
+      "Merriweather",
+      "Lora",
+      "Libre Baskerville",
+      "Source Serif Pro",
+      "Playfair Display",
+      "EB Garamond",
+      "Cormorant Garamond",
+      "Spectral",
+      "Gelasio"
+    ],
+    "sans_body": [
+      "Source Sans Pro",
+      "Open Sans",
+      "Roboto",
+      "Lato",
+      "Montserrat",
+      "Raleway",
+      "PT Sans",
+      "Work Sans",
+      "Nunito",
+      "Inter"
+    ],
+    "serif_heading": [
+      "Playfair Display",
+      "Merriweather",
+      "Crimson Text",
+      "Libre Baskerville",
+      "Cormorant Garamond",
+      "Cinzel",
+      "Cardo",
+      "Literata",
+      "Unna",
+      "Vollkorn"
+    ],
+    "sans_heading": [
+      "Montserrat",
+      "Oswald",
+      "Raleway",
+      "Roboto Condensed",
+      "Archivo Black",
+      "Anton",
+      "Bebas Neue",
+      "Barlow Condensed",
+      "Saira Condensed",
+      "Fjalla One"
+    ],
+    "monospace": [
+      "Fira Code",
+      "Source Code Pro",
+      "Roboto Mono",
+      "JetBrains Mono",
+      "IBM Plex Mono",
+      "Inconsolata",
+      "Courier Prime",
+      "Space Mono",
+      "Anonymous Pro",
+      "Ubuntu Mono"
+    ]
+  },
+  "genre_pairings": {
+    "fiction": [
+      {
+        "body": "Crimson Text",
+        "heading": "Playfair Display",
+        "mood": "classic",
+        "rationale": "Elegant serif pair for literary fiction"
+      },
+      {
+        "body": "Merriweather",
+        "heading": "Montserrat",
+        "mood": "modern",
+        "rationale": "Contemporary serif/sans mix"
+      },
+      {
+        "body": "Lora",
+        "heading": "Raleway",
+        "mood": "clean",
+        "rationale": "Readable and approachable"
+      }
+    ],
+    "mystery": [
+      {
+        "body": "Crimson Text",
+        "heading": "Playfair Display",
+        "mood": "dark",
+        "rationale": "Classic noir aesthetic"
+      },
+      {
+        "body": "Libre Baskerville",
+        "heading": "Oswald",
+        "mood": "tense",
+        "rationale": "Sharp contrasts for suspense"
+      },
+      {
+        "body": "EB Garamond",
+        "heading": "Cinzel",
+        "mood": "sophisticated",
+        "rationale": "Refined detective style"
+      }
+    ],
+    "romance": [
+      {
+        "body": "Lora",
+        "heading": "Playfair Display",
+        "mood": "romantic",
+        "rationale": "Soft and elegant"
+      },
+      {
+        "body": "Crimson Text",
+        "heading": "Cormorant Garamond",
+        "mood": "delicate",
+        "rationale": "Flowing and graceful"
+      },
+      {
+        "body": "Spectral",
+        "heading": "Montserrat",
+        "mood": "contemporary",
+        "rationale": "Modern romance"
+      }
+    ],
+    "scifi": [
+      {
+        "body": "Source Sans Pro",
+        "heading": "Roboto Condensed",
+        "mood": "futuristic",
+        "rationale": "Clean tech aesthetic"
+      },
+      {
+        "body": "Inter",
+        "heading": "Oswald",
+        "mood": "modern",
+        "rationale": "Sharp and forward-looking"
+      },
+      {
+        "body": "Work Sans",
+        "heading": "Barlow Condensed",
+        "mood": "minimalist",
+        "rationale": "Streamlined future"
+      }
+    ],
+    "fantasy": [
+      {
+        "body": "Merriweather",
+        "heading": "Cinzel",
+        "mood": "epic",
+        "rationale": "Grand and mythical"
+      },
+      {
+        "body": "Crimson Text",
+        "heading": "Playfair Display",
+        "mood": "classic",
+        "rationale": "Timeless storytelling"
+      },
+      {
+        "body": "Libre Baskerville",
+        "heading": "Unna",
+        "mood": "mystical",
+        "rationale": "Enchanted aesthetic"
+      }
+    ],
+    "technical": [
+      {
+        "body": "Source Sans Pro",
+        "heading": "Roboto",
+        "mono": "Fira Code",
+        "mood": "professional",
+        "rationale": "Clear technical documentation"
+      },
+      {
+        "body": "Inter",
+        "heading": "Montserrat",
+        "mono": "Source Code Pro",
+        "mood": "modern",
+        "rationale": "Contemporary tech writing"
+      },
+      {
+        "body": "Open Sans",
+        "heading": "Raleway",
+        "mono": "JetBrains Mono",
+        "mood": "accessible",
+        "rationale": "User-friendly technical content"
+      }
+    ],
+    "academic": [
+      {
+        "body": "Source Serif Pro",
+        "heading": "Roboto Slab",
+        "mono": "Inconsolata",
+        "mood": "scholarly",
+        "rationale": "Academic professionalism"
+      },
+      {
+        "body": "Crimson Text",
+        "heading": "Libre Baskerville",
+        "mood": "traditional",
+        "rationale": "Classical academic style"
+      },
+      {
+        "body": "EB Garamond",
+        "heading": "Montserrat",
+        "mood": "refined",
+        "rationale": "Sophisticated research"
+      }
+    ],
+    "business": [
+      {
+        "body": "Lato",
+        "heading": "Montserrat",
+        "mood": "corporate",
+        "rationale": "Professional business style"
+      },
+      {
+        "body": "Source Sans Pro",
+        "heading": "Oswald",
+        "mood": "confident",
+        "rationale": "Strong business voice"
+      },
+      {
+        "body": "Roboto",
+        "heading": "Raleway",
+        "mood": "modern",
+        "rationale": "Contemporary business"
+      }
+    ]
+  },
+  "font_metadata": {
+    "Source Serif Pro": {
+      "name": "Source Serif Pro",
+      "category": "serif",
+      "supports_latin": true,
+      "variable": false,
+      "google_fonts": true
+    },
+    "Bebas Neue": {
+      "name": "Bebas Neue",
+      "category": "sans-serif",
+      "supports_latin": true,
+      "variable": false,
+      "google_fonts": true
+    },
+    "Inter": {
+      "name": "Inter",
+      "category": "sans-serif",
+      "supports_latin": true,
+      "variable": false,
+      "google_fonts": true
+    },
+    "Libre Baskerville": {
+      "name": "Libre Baskerville",
+      "category": "serif",
+      "supports_latin": true,
+      "variable": false,
+      "google_fonts": true
+    },
+    "Literata": {
+      "name": "Literata",
+      "category": "serif",
+      "supports_latin": true,
+      "variable": false,
+      "google_fonts": true
+    },
+    "Archivo Black": {
+      "name": "Archivo Black",
+      "category": "sans-serif",
+      "supports_latin": true,
+      "variable": false,
+      "google_fonts": true
+    },
+    "Montserrat": {
+      "name": "Montserrat",
+      "category": "sans-serif",
+      "supports_latin": true,
+      "variable": false,
+      "google_fonts": true
+    },
+    "Fjalla One": {
+      "name": "Fjalla One",
+      "category": "sans-serif",
+      "supports_latin": true,
+      "variable": false,
+      "google_fonts": true
+    },
+    "IBM Plex Mono": {
+      "name": "IBM Plex Mono",
+      "category": "monospace",
+      "supports_latin": true,
+      "variable": false,
+      "google_fonts": true
+    },
+    "Unna": {
+      "name": "Unna",
+      "category": "serif",
+      "supports_latin": true,
+      "variable": false,
+      "google_fonts": true
+    },
+    "Raleway": {
+      "name": "Raleway",
+      "category": "sans-serif",
+      "supports_latin": true,
+      "variable": false,
+      "google_fonts": true
+    },
+    "Cinzel": {
+      "name": "Cinzel",
+      "category": "serif",
+      "supports_latin": true,
+      "variable": false,
+      "google_fonts": true
+    },
+    "Cardo": {
+      "name": "Cardo",
+      "category": "serif",
+      "supports_latin": true,
+      "variable": false,
+      "google_fonts": true
+    },
+    "Nunito": {
+      "name": "Nunito",
+      "category": "sans-serif",
+      "supports_latin": true,
+      "variable": false,
+      "google_fonts": true
+    },
+    "Gelasio": {
+      "name": "Gelasio",
+      "category": "serif",
+      "supports_latin": true,
+      "variable": false,
+      "google_fonts": true
+    },
+    "Inconsolata": {
+      "name": "Inconsolata",
+      "category": "sans-serif",
+      "supports_latin": true,
+      "variable": false,
+      "google_fonts": true
+    },
+    "Space Mono": {
+      "name": "Space Mono",
+      "category": "monospace",
+      "supports_latin": true,
+      "variable": false,
+      "google_fonts": true
+    },
+    "Crimson Text": {
+      "name": "Crimson Text",
+      "category": "serif",
+      "supports_latin": true,
+      "variable": false,
+      "google_fonts": true
+    },
+    "Courier Prime": {
+      "name": "Courier Prime",
+      "category": "monospace",
+      "supports_latin": true,
+      "variable": false,
+      "google_fonts": true
+    },
+    "Anton": {
+      "name": "Anton",
+      "category": "sans-serif",
+      "supports_latin": true,
+      "variable": false,
+      "google_fonts": true
+    },
+    "Oswald": {
+      "name": "Oswald",
+      "category": "sans-serif",
+      "supports_latin": true,
+      "variable": false,
+      "google_fonts": true
+    },
+    "Roboto": {
+      "name": "Roboto",
+      "category": "sans-serif",
+      "supports_latin": true,
+      "variable": false,
+      "google_fonts": true
+    },
+    "Source Sans Pro": {
+      "name": "Source Sans Pro",
+      "category": "sans-serif",
+      "supports_latin": true,
+      "variable": false,
+      "google_fonts": true
+    },
+    "Lato": {
+      "name": "Lato",
+      "category": "sans-serif",
+      "supports_latin": true,
+      "variable": false,
+      "google_fonts": true
+    },
+    "Anonymous Pro": {
+      "name": "Anonymous Pro",
+      "category": "sans-serif",
+      "supports_latin": true,
+      "variable": false,
+      "google_fonts": true
+    },
+    "Source Code Pro": {
+      "name": "Source Code Pro",
+      "category": "monospace",
+      "supports_latin": true,
+      "variable": false,
+      "google_fonts": true
+    },
+    "Ubuntu Mono": {
+      "name": "Ubuntu Mono",
+      "category": "monospace",
+      "supports_latin": true,
+      "variable": false,
+      "google_fonts": true
+    },
+    "Spectral": {
+      "name": "Spectral",
+      "category": "serif",
+      "supports_latin": true,
+      "variable": false,
+      "google_fonts": true
+    },
+    "Playfair Display": {
+      "name": "Playfair Display",
+      "category": "serif",
+      "supports_latin": true,
+      "variable": false,
+      "google_fonts": true
+    },
+    "Roboto Mono": {
+      "name": "Roboto Mono",
+      "category": "monospace",
+      "supports_latin": true,
+      "variable": false,
+      "google_fonts": true
+    },
+    "Merriweather": {
+      "name": "Merriweather",
+      "category": "serif",
+      "supports_latin": true,
+      "variable": false,
+      "google_fonts": true
+    },
+    "Vollkorn": {
+      "name": "Vollkorn",
+      "category": "serif",
+      "supports_latin": true,
+      "variable": false,
+      "google_fonts": true
+    },
+    "Cormorant Garamond": {
+      "name": "Cormorant Garamond",
+      "category": "serif",
+      "supports_latin": true,
+      "variable": false,
+      "google_fonts": true
+    },
+    "EB Garamond": {
+      "name": "EB Garamond",
+      "category": "serif",
+      "supports_latin": true,
+      "variable": false,
+      "google_fonts": true
+    },
+    "PT Sans": {
+      "name": "PT Sans",
+      "category": "sans-serif",
+      "supports_latin": true,
+      "variable": false,
+      "google_fonts": true
+    },
+    "Work Sans": {
+      "name": "Work Sans",
+      "category": "sans-serif",
+      "supports_latin": true,
+      "variable": false,
+      "google_fonts": true
+    },
+    "Roboto Condensed": {
+      "name": "Roboto Condensed",
+      "category": "sans-serif",
+      "supports_latin": true,
+      "variable": false,
+      "google_fonts": true
+    },
+    "Open Sans": {
+      "name": "Open Sans",
+      "category": "sans-serif",
+      "supports_latin": true,
+      "variable": false,
+      "google_fonts": true
+    },
+    "Lora": {
+      "name": "Lora",
+      "category": "serif",
+      "supports_latin": true,
+      "variable": false,
+      "google_fonts": true
+    },
+    "Fira Code": {
+      "name": "Fira Code",
+      "category": "monospace",
+      "supports_latin": true,
+      "variable": false,
+      "google_fonts": true
+    },
+    "JetBrains Mono": {
+      "name": "JetBrains Mono",
+      "category": "monospace",
+      "supports_latin": true,
+      "variable": false,
+      "google_fonts": true
+    },
+    "Barlow Condensed": {
+      "name": "Barlow Condensed",
+      "category": "sans-serif",
+      "supports_latin": true,
+      "variable": false,
+      "google_fonts": true
+    },
+    "Saira Condensed": {
+      "name": "Saira Condensed",
+      "category": "sans-serif",
+      "supports_latin": true,
+      "variable": false,
+      "google_fonts": true
+    }
+  }
+}
