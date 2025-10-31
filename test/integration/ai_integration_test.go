@@ -54,19 +54,19 @@ func TestAIClient_RealAnalysis(t *testing.T) {
 				assert.Contains(t, []string{"fiction", "narrative", "story"}, analysis.Genre)
 				
 				// Tom deve ser narrativo/conversational
-				assert.NotEmpty(t, analysis.Tone)
+				assert.NotEmpty(t, analysis.Tone.Primary)
 				
 				// Pipeline simples ou standard (não LaTeX para ficção)
-				assert.Contains(t, []string{"simple", "standard"}, analysis.RecommendedPipeline)
+				assert.Contains(t, []string{"simple", "standard", "html"}, analysis.RecommendedPipeline)
 				
-				// Não deve ter muitas equações
-				assert.Less(t, analysis.EquationPercentage, 0.05)
+				// Não deve ter muita matemática
+				assert.False(t, analysis.HasMath)
 				
 				t.Logf("✅ Fiction Analysis:")
 				t.Logf("   Genre: %s (%.2f)", analysis.Genre, analysis.GenreConfidence)
-				t.Logf("   Tone: %s", analysis.Tone)
+				t.Logf("   Tone: %s (formality: %.2f)", analysis.Tone.Primary, analysis.Tone.Formality)
 				t.Logf("   Pipeline: %s", analysis.RecommendedPipeline)
-				t.Logf("   Fonts: %s / %s", analysis.RecommendedBodyFont, analysis.RecommendedTitleFont)
+				t.Logf("   Special: Math=%v Code=%v Images=%v", analysis.HasMath, analysis.HasCode, analysis.HasImages)
 			},
 		},
 		{
@@ -104,18 +104,18 @@ func TestAIClient_RealAnalysis(t *testing.T) {
 				assert.Contains(t, []string{"technical", "computer_science", "programming"}, analysis.Genre)
 				
 				// Deve detectar código
-				assert.Greater(t, analysis.CodePercentage, 0.0)
+				assert.True(t, analysis.HasCode)
 				
-				// Deve detectar tabelas
-				assert.Greater(t, analysis.TableCount, 0)
+				// Densidade técnica alta
+				assert.Greater(t, analysis.Complexity.TechnicalDensity, 0.0)
 				
 				// Pipeline pode ser standard ou latex
 				assert.Contains(t, []string{"standard", "latex"}, analysis.RecommendedPipeline)
 				
 				t.Logf("✅ Technical Analysis:")
 				t.Logf("   Genre: %s (%.2f)", analysis.Genre, analysis.GenreConfidence)
-				t.Logf("   Code: %.2f%%", analysis.CodePercentage*100)
-				t.Logf("   Tables: %d", analysis.TableCount)
+				t.Logf("   Code: %v", analysis.HasCode)
+				t.Logf("   Math: %v", analysis.HasMath)
 				t.Logf("   Pipeline: %s", analysis.RecommendedPipeline)
 				t.Logf("   Should use LaTeX: %v", analysis.ShouldUseLaTeX())
 			},

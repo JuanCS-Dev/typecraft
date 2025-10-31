@@ -2,8 +2,11 @@ package ai
 
 import (
 	"context"
+	"encoding/json"
 	"fmt"
+	"strings"
 
+	"github.com/JuanCS-Dev/typecraft/internal/domain"
 	openai "github.com/sashabaranov/go-openai"
 )
 
@@ -58,4 +61,21 @@ func (c *Client) AnalyzeText(ctx context.Context, text string) (string, error) {
 	}
 
 	return resp.Choices[0].Message.Content, nil
+}
+
+// ParseAnalysisResponse converte a resposta JSON da IA em estrutura de análise
+func ParseAnalysisResponse(jsonResp string, projectID string) (*domain.AIAnalysis, error) {
+	// Remove markdown code blocks se presentes
+	jsonResp = strings.TrimPrefix(jsonResp, "```json")
+	jsonResp = strings.TrimPrefix(jsonResp, "```")
+	jsonResp = strings.TrimSuffix(jsonResp, "```")
+	jsonResp = strings.TrimSpace(jsonResp)
+
+	var analysis domain.AIAnalysis
+	if err := json.Unmarshal([]byte(jsonResp), &analysis); err != nil {
+		return nil, fmt.Errorf("failed to parse AI response: %w", err)
+	}
+
+	analysis.ProjectID = projectID
+	return &analysis, nil
 }
