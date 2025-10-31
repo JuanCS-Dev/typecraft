@@ -93,6 +93,10 @@ func main() {
 	if err != nil {
 		log.Printf("⚠️  Warning: Analysis handler não disponível: %v", err)
 	}
+	
+	// Design and Render handlers (Sprint 5-6)
+	designHandler := handlers.NewDesignHandler()
+	renderHandler := handlers.NewRenderHandler()
 
 	// API v1 routes
 	v1 := router.Group("/api/v1")
@@ -127,6 +131,15 @@ func main() {
 			v1.GET("/projects/:id/metrics", analysisHandler.GetProjectMetrics)
 			v1.GET("/genres", analysisHandler.ListGenres)
 		}
+		
+		// Design (Sprint 5-6: AI-powered design generation)
+		v1.POST("/projects/:id/design/generate", designHandler.GenerateDesign)
+		v1.GET("/fonts", designHandler.ListFonts)
+		
+		// Render (Sprint 5-6: HTML/CSS and PDF rendering)
+		v1.POST("/projects/:id/render/html", renderHandler.RenderHTML)
+		v1.POST("/projects/:id/render/pdf", renderHandler.RenderPDF)
+		v1.GET("/projects/:id/render/status", renderHandler.GetRenderStatus)
 	}
 
 	// Iniciar servidor
